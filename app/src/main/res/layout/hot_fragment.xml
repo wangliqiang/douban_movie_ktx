@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <com.app.douban_movie_ktx.widget.InsetDispatchingCoordinatorLayout
+        android:id="@+id/coordinator_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:background="#ffffff"
+                android:gravity="center"
+                android:text="热 映"
+                android:textAppearance="@style/TextAppearance.ToolbarTitle" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/light_grey"></View>
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                app:tabIndicatorColor="@color/black"
+                app:tabIndicatorFullWidth="false"
+                app:tabSelectedTextColor="@color/black"
+                app:tabTextAppearance="@style/TextAppearance.Toolbar.Text"
+                app:tabTextColor="@color/grey"
+                app:tabUnboundedRipple="true"></com.google.android.material.tabs.TabLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <com.app.douban_movie_ktx.widget.StatusBarScrim
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorSurface"
+            android:elevation="@dimen/appbar_elevation"
+            android:fitsSystemWindows="true"
+            android:outlineProvider="none" />
+
+        <com.app.douban_movie_ktx.widget.CustomSwipeRefreshLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </com.app.douban_movie_ktx.widget.CustomSwipeRefreshLayout>
+
+    </com.app.douban_movie_ktx.widget.InsetDispatchingCoordinatorLayout>
+</layout>

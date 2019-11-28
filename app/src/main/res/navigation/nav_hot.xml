@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation_hot"
+    app:startDestination="@id/hotFragment">
+
+    <fragment
+        android:id="@+id/hotFragment"
+        android:name="com.app.douban_movie_ktx.ui.fragments.HotFragment"
+        android:label="hot_fragment" />
+</navigation>
