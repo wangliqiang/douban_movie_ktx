@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.app.douban_movie_ktx.data.model.Subject
 import com.app.douban_movie_ktx.databinding.ItemInTheatersRecyclerviewBinding
+import com.google.common.base.Strings
+
 
 class InTheatersAdapter :
     ListAdapter<Subject, InTheatersAdapter.ViewHolder>(diffCallback) {
@@ -22,14 +24,32 @@ class InTheatersAdapter :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
-        holder.apply {
-            bind(item)
-            itemView.tag = item
+        holder.bind(item)
+        val pubCountry = StringBuffer()
+        for (i in 0 until item.pubdates.size) {
+            item.pubdates.get(i).indexOf("(")
+            pubCountry.append(item.pubdates.get(i).substring(item.pubdates.get(i).indexOf("(") + 1, item.pubdates.get(i).indexOf(")")) + " ")
         }
+
+        val genres = StringBuffer()
+        for (i in 0 until item.genres.size) {
+            genres.append(item.genres.get(i) + " ")
+        }
+
+        val casts = StringBuffer()
+        for (i in 0 until item.casts.size) {
+            casts.append(item.casts.get(i).name + " ")
+        }
+
+        holder.binding.itemDescription.setText(
+            item.year + " / " + pubCountry.toString() + " / " + genres.toString() + (if (item.directors.isEmpty()) " " else " / " +item.directors.get(0).name)
+                    + if (Strings.isNullOrEmpty(casts.toString())) " " else " / $casts"
+        )
     }
 
-    class ViewHolder(private val binding: ItemInTheatersRecyclerviewBinding) :
+    class ViewHolder(val binding: ItemInTheatersRecyclerviewBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
         fun bind(subjectsBean: Subject?) {
             binding.apply {
                 subject = subjectsBean
