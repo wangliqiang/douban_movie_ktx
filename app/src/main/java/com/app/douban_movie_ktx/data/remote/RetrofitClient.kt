@@ -40,7 +40,7 @@ class RetrofitClient {
     open fun <Service> getService(serviceClass: Class<Service>, baseUrl: String): Service {
         return Retrofit.Builder()
             .client(client)
-            .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
+            .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .baseUrl(baseUrl)
             .build()

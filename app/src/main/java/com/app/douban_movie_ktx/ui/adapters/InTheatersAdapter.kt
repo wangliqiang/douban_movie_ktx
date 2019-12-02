@@ -24,7 +24,10 @@ class InTheatersAdapter :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(item)
+        holder.apply {
+            bind(item)
+            itemView.tag = item
+        }
         val pubCountry = StringBuffer()
         for (i in 0 until item.pubdates.size) {
             item.pubdates.get(i).indexOf("(")
