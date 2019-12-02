@@ -39,7 +39,7 @@ class InTheatersViewModel : BaseViewModel() {
         coroutineScope.launch {
             try {
                 _status.value = ApiStatus.LOADING
-                val response = apiService.getInTheaters("0df993c66c0c636e29ecbb5344252a4a","济南").await()
+                val response = apiService.getInTheaters("0df993c66c0c636e29ecbb5344252a4a","济南")
                 _status.value = ApiStatus.DONE
                 _InTheatersData.value = response
             } catch (e: Exception) {

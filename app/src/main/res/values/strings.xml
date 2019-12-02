@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">douban_movie_ktx</string>
+    <string name="app_name">豆瓣电影</string>
 
     <!-- Messages -->
     <string name="set_permissions_in_settings">请在应用设置中启用权限</string>

@@ -12,8 +12,8 @@ interface ApiService {
     }
 
     @GET("in_theaters")
-    fun getInTheaters(
+    suspend fun getInTheaters(
         @Query("apikey") apikey: String, @Query("city") city: String
-    ): Deferred<InTheaters>
+    ): InTheaters
 
 }

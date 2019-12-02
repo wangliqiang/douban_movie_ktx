@@ -41,7 +41,7 @@ class RetrofitClient {
         return Retrofit.Builder()
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(CoroutineCallAdapterFactory())
+            .addCallAdapterFactory(CoroutineCallAdapterFactory.invoke())
             .baseUrl(baseUrl)
             .build()
             .create(serviceClass)
