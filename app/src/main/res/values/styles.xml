@@ -27,11 +27,4 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="Widget" parent="@android:style/Widget" />
-
-    <style name="Widget.TimeHeaders">
-        <item name="android:textColor">?colorPrimary</item>
-        <item name="android:fontFamily">@font/google_sans</item>
-    </style>
-
 </resources>
