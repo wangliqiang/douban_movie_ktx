@@ -8,45 +8,43 @@ import com.app.douban_movie_ktx.data.model.Theaters
 import com.app.douban_movie_ktx.data.remote.ApiStatus
 import kotlinx.coroutines.launch
 
-class InTheatersViewModel : BaseViewModel() {
-
-    init {
-        getInTheatersData()
-    }
-
+class ComingSoonViewModel : BaseViewModel() {
 
     private val _status = MutableLiveData<ApiStatus>()
-
     val status: LiveData<ApiStatus>
         get() = _status
 
-    private val _InTheatersData = MutableLiveData<Theaters>()
+    private val _commingSoonData = MutableLiveData<Theaters>()
+    val commingSoonData: LiveData<Theaters>
+        get() = _commingSoonData
 
-    val theatersData: LiveData<Theaters>
-        get() = _InTheatersData
+    init {
+        getCommingSoonData()
+    }
 
-    private fun getInTheatersData() {
+    private fun getCommingSoonData() {
         coroutineScope.launch {
             try {
                 _status.value = ApiStatus.LOADING
-                val response =
-                    HotRepository.getInstance.getInTheaters("0df993c66c0c636e29ecbb5344252a4a", "济南")
+                val response = HotRepository.getInstance.getComingSoon(
+                    "0df993c66c0c636e29ecbb5344252a4a",
+                    "济南"
+                )
                 _status.value = ApiStatus.DONE
-                _InTheatersData.value = response
+                _commingSoonData.value = response
             } catch (e: Exception) {
                 _status.value = ApiStatus.ERROR
-                _InTheatersData.value = null
+                _commingSoonData.value = null
             }
         }
     }
 
+
     fun onSwipeRefresh() {
-        getInTheatersData()
+        getCommingSoonData()
     }
 
     fun retry() {
-        getInTheatersData()
+        getCommingSoonData()
     }
-
-
 }

@@ -5,11 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.app.douban_movie_ktx.R
 import com.app.douban_movie_ktx.databinding.FragmentInTheatersBinding
 import com.app.douban_movie_ktx.ui.adapters.InTheatersAdapter
 import com.app.douban_movie_ktx.ui.viewmodels.InTheatersViewModel
@@ -26,12 +24,7 @@ class InTheatersFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(
-            LayoutInflater.from(context),
-            R.layout.fragment_in_theaters,
-            container,
-            false
-        )
+        binding = FragmentInTheatersBinding.inflate(inflater)
         viewModel =
             ViewModelProvider.NewInstanceFactory().create(InTheatersViewModel::class.java)
         binding.lifecycleOwner = this
@@ -41,7 +34,7 @@ class InTheatersFragment : Fragment() {
 
         binding.recyclerview.adapter = inTheatersAdapter
 
-        viewModel.InTheatersData.observe(viewLifecycleOwner, Observer {
+        viewModel.theatersData.observe(viewLifecycleOwner, Observer {
             inTheatersAdapter.submitList(it?.subjects);
         })
         return binding.root

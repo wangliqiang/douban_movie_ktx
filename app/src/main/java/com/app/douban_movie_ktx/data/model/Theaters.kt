@@ -2,7 +2,7 @@ package com.app.douban_movie_ktx.data.model
 import com.google.gson.annotations.SerializedName
 
 
-data class InTheaters(
+data class Theaters(
     @SerializedName("count")
     val count: Int,
     @SerializedName("start")
