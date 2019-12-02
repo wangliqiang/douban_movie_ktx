@@ -34,12 +34,11 @@ class InTheatersViewModel : BaseViewModel() {
     val InTheatersData: LiveData<InTheaters>
         get() = _InTheatersData
 
-
     private fun getInTheatersData() {
         coroutineScope.launch {
             try {
                 _status.value = ApiStatus.LOADING
-                val response = apiService.getInTheaters("0df993c66c0c636e29ecbb5344252a4a","济南")
+                val response = apiService.getInTheaters("0df993c66c0c636e29ecbb5344252a4a", "济南")
                 _status.value = ApiStatus.DONE
                 _InTheatersData.value = response
             } catch (e: Exception) {
@@ -47,6 +46,14 @@ class InTheatersViewModel : BaseViewModel() {
                 _InTheatersData.value = null
             }
         }
+    }
+
+    fun onSwipeRefresh() {
+        getInTheatersData()
+    }
+
+    fun retry(){
+        getInTheatersData()
     }
 
 

@@ -42,9 +42,7 @@ class InTheatersFragment : Fragment() {
         binding.recyclerview.adapter = inTheatersAdapter
 
         viewModel.InTheatersData.observe(viewLifecycleOwner, Observer {
-            if (it != null) {
-                inTheatersAdapter.submitList(it.subjects);
-            }
+            inTheatersAdapter.submitList(it?.subjects);
         })
         return binding.root
     }

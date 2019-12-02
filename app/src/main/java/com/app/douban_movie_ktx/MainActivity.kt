@@ -24,8 +24,7 @@ class MainActivity : AppCompatActivity() {
 
     private val permissions = Arrays.asList(
         Manifest.permission.READ_EXTERNAL_STORAGE,
-        Manifest.permission.WRITE_EXTERNAL_STORAGE,
-        Manifest.permission.CAMERA
+        Manifest.permission.WRITE_EXTERNAL_STORAGE
     )
 
     private var permissionRequestCount: Int = 0
@@ -38,19 +37,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        navigation = findViewById(R.id.navigation)
-
-        if (savedInstanceState == null) {
-            setupBottomNavigationBar();
+        savedInstanceState?.let {
+            permissionRequestCount = it.getInt(KEY_PERMISSIONS_REQUEST_COUNT, 0)
         }
 
         // 获取权限
         requestPermissionsIfNecessary()
+
+        navigation = findViewById(R.id.navigation)
+        setupBottomNavigationBar()
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
         super.onRestoreInstanceState(savedInstanceState)
-        setupBottomNavigationBar();
+        setupBottomNavigationBar()
     }
 
     /**
