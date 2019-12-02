@@ -1,7 +1,6 @@
 package com.app.douban_movie_ktx.data.api
 
 import com.app.douban_movie_ktx.data.model.InTheaters
-import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 import retrofit2.http.Query
 
