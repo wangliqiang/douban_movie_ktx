@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.app.douban_movie_ktx.databinding.FragmentComingSoonBinding
-import com.app.douban_movie_ktx.ui.adapters.InTheatersAdapter
+import com.app.douban_movie_ktx.ui.adapters.CommingSoonAdapter
 import com.app.douban_movie_ktx.ui.viewmodels.ComingSoonViewModel
 
 /**
@@ -31,16 +31,13 @@ class ComingSoonFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.vm = viewModel
 
-        var inTheatersAdapter = InTheatersAdapter();
+        var commingSoonAdapter = CommingSoonAdapter();
 
-        binding.recyclerview.adapter = inTheatersAdapter
+        binding.recyclerview.adapter = commingSoonAdapter
 
         viewModel.commingSoonData.observe(viewLifecycleOwner, Observer {
-            inTheatersAdapter.submitList(it?.subjects);
+            commingSoonAdapter.submitList(it?.subjects);
         })
-
         return binding.root
     }
-
-
 }
