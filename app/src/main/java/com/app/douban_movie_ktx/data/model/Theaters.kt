@@ -1,6 +1,5 @@
 package com.app.douban_movie_ktx.data.model
 import com.google.gson.annotations.SerializedName
-import org.threeten.bp.ZonedDateTime
 
 
 data class Theaters(

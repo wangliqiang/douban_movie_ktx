@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.app.douban_movie_ktx.databinding.FragmentComingSoonBinding
 import com.app.douban_movie_ktx.ui.adapters.CommingSoonAdapter
@@ -21,6 +23,7 @@ class ComingSoonFragment : Fragment() {
 
     private lateinit var viewModel: ComingSoonViewModel
     private lateinit var binding: FragmentComingSoonBinding
+    private lateinit var commingSoonAdapter: CommingSoonAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,9 +36,20 @@ class ComingSoonFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.vm = viewModel
 
-        var commingSoonAdapter = CommingSoonAdapter();
+        commingSoonAdapter = CommingSoonAdapter();
 
-        binding.recyclerview.adapter = commingSoonAdapter
+        binding.recyclerview.apply {
+            adapter = this@ComingSoonFragment.commingSoonAdapter
+            setRecycledViewPool(RecyclerView.RecycledViewPool())
+            (layoutManager as LinearLayoutManager).recycleChildrenOnDetach = true
+            (itemAnimator as DefaultItemAnimator).run {
+                supportsChangeAnimations = false
+                addDuration = 160L
+                moveDuration = 160L
+                changeDuration = 160L
+                removeDuration = 120L
+            }
+        }
 
         viewModel.commingSoonData.observe(viewLifecycleOwner, Observer {
             commingSoonAdapter.submitList(it?.subjects);

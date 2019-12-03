@@ -4,17 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import androidx.lifecycle.ViewModelProviders
-import androidx.viewpager.widget.ViewPager
 import com.app.douban_movie_ktx.R
 import com.app.douban_movie_ktx.databinding.HotFragmentBinding
 import com.app.douban_movie_ktx.ui.fragments.hot.ComingSoonFragment
 import com.app.douban_movie_ktx.ui.fragments.hot.InTheatersFragment
-import com.app.douban_movie_ktx.ui.viewmodels.HotViewModel
 import com.google.android.material.tabs.TabLayout
 
 class HotFragment : Fragment() {
