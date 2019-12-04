@@ -8,8 +8,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavController
+import com.app.douban_movie_ktx.databinding.ActivityMainBinding
 import com.app.douban_movie_ktx.utils.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.util.*
@@ -31,21 +33,21 @@ class MainActivity : AppCompatActivity() {
 
     private var currentNavController: LiveData<NavController>? = null
 
-    lateinit var navigation: BottomNavigationView
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
+        if (savedInstanceState == null) {
+            setupBottomNavigationBar()
+        }
 
         savedInstanceState?.let {
             permissionRequestCount = it.getInt(KEY_PERMISSIONS_REQUEST_COUNT, 0)
         }
-
         // 获取权限
         requestPermissionsIfNecessary()
-
-        navigation = findViewById(R.id.navigation)
-        setupBottomNavigationBar()
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
@@ -64,7 +66,7 @@ class MainActivity : AppCompatActivity() {
         )
 
         // Setup the bottom navigation view with a list of navigation graphs
-        val controller = navigation.setupWithNavController(
+        val controller = binding.navigation.setupWithNavController(
             navGraphIds = navGraphIds,
             fragmentManager = supportFragmentManager,
             containerId = R.id.nav_host_fragment,
@@ -73,7 +75,7 @@ class MainActivity : AppCompatActivity() {
 
         //Choose when to show/hide the Bottom Navigation View
         controller.value?.addOnDestinationChangedListener { _, destination, _ ->
-            navigation.visibility = when (destination.id) {
+            binding.navigation.visibility = when (destination.id) {
                 R.id.hotFragment -> View.VISIBLE
                 else -> View.VISIBLE
             }

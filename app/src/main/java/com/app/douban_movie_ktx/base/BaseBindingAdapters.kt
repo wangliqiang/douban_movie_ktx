@@ -21,6 +21,7 @@ import android.view.View
 import android.widget.ImageView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
+import androidx.viewpager.widget.ViewPager
 import com.app.douban_movie_ktx.R
 import com.app.douban_movie_ktx.data.remote.ApiStatus
 import com.bumptech.glide.Glide
@@ -67,3 +68,9 @@ fun bindStatus(statusImageView: ImageView, status: ApiStatus?) {
         }
     }
 }
+
+@BindingAdapter("pageMargin")
+fun pageMargin(viewPager: ViewPager, pageMargin: Float) {
+    viewPager.pageMargin = pageMargin.toInt()
+}
+
