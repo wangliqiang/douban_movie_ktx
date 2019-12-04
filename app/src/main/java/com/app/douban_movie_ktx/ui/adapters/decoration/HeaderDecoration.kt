@@ -1,4 +1,4 @@
-package com.app.douban_movie_ktx.ui.fragments.hot
+package com.app.douban_movie_ktx.ui.adapters.decoration
 
 import android.content.Context
 import android.graphics.Canvas

@@ -64,7 +64,6 @@ class MainActivity : AppCompatActivity() {
             R.navigation.nav_find,
             R.navigation.nav_mine
         )
-
         // Setup the bottom navigation view with a list of navigation graphs
         val controller = binding.navigation.setupWithNavController(
             navGraphIds = navGraphIds,

@@ -13,7 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.app.douban_movie_ktx.databinding.FragmentComingSoonBinding
 import com.app.douban_movie_ktx.ui.adapters.CommingSoonAdapter
-import com.app.douban_movie_ktx.ui.fragments.hot.HeaderDecoration.DecorationCallback
+import com.app.douban_movie_ktx.ui.adapters.decoration.HeaderDecoration
+import com.app.douban_movie_ktx.ui.adapters.decoration.HeaderDecoration.DecorationCallback
 import com.app.douban_movie_ktx.ui.viewmodels.ComingSoonViewModel
 
 /**
@@ -33,7 +34,7 @@ class ComingSoonFragment : Fragment() {
         binding = FragmentComingSoonBinding.inflate(inflater)
         viewModel = ViewModelProvider.NewInstanceFactory().create(ComingSoonViewModel::class.java)
 
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
         binding.vm = viewModel
 
         commingSoonAdapter = CommingSoonAdapter();
@@ -60,7 +61,8 @@ class ComingSoonFragment : Fragment() {
             }
             binding.recyclerview.clearDecorations()
             binding.recyclerview.addItemDecoration(
-                HeaderDecoration(headerList, requireContext(),
+                HeaderDecoration(headerList,
+                    requireContext(),
                     object : DecorationCallback {
                         override fun getGroupId(position: Int): String {
                             if (headerList[position].name.isNullOrEmpty()) {

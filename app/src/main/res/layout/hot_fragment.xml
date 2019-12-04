@@ -2,10 +2,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data>
-
-    </data>
-
     <com.app.douban_movie_ktx.widget.InsetDispatchingCoordinatorLayout
         android:id="@+id/coordinator_layout"
         android:layout_width="match_parent"
@@ -41,7 +37,7 @@
                 app:tabSelectedTextColor="@color/black"
                 app:tabTextAppearance="@style/TextAppearance.Toolbar.Text"
                 app:tabTextColor="@color/grey"
-                app:tabUnboundedRipple="true"></com.google.android.material.tabs.TabLayout>
+                app:tabUnboundedRipple="true" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -53,7 +49,7 @@
             android:fitsSystemWindows="true"
             android:outlineProvider="none" />
 
-        <LinearLayout
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -63,8 +59,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/white"
-                app:pageMargin="@{@dimen/spacing_normal}"/>
-        </LinearLayout>
+                app:pageMargin="@{@dimen/spacing_normal}" />
+        </FrameLayout>
 
     </com.app.douban_movie_ktx.widget.InsetDispatchingCoordinatorLayout>
 </layout>
