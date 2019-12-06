@@ -32,7 +32,7 @@ class ComingSoonFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentComingSoonBinding.inflate(inflater)
-        viewModel = ViewModelProvider.NewInstanceFactory().create(ComingSoonViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(ComingSoonViewModel::class.java)
 
         binding.lifecycleOwner = viewLifecycleOwner
         binding.vm = viewModel
