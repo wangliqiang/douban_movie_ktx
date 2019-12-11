@@ -29,11 +29,11 @@ class RetrofitClient {
             }
 
             builder.addInterceptor(loggingInterceptor)
+                .addInterceptor(RequestInterceptor())
                 .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
 
             return builder.build()
         }
-
 
 
     open fun <Service> getService(serviceClass: Class<Service>, baseUrl: String): Service {

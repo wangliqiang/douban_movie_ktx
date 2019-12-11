@@ -18,7 +18,7 @@ class InTheatersViewModel : BaseViewModel() {
     val status: LiveData<ApiStatus>
         get() = _status
 
-    private val _InTheatersData = MutableLiveData<Theaters>()
+    private var _InTheatersData = MutableLiveData<Theaters>()
     val theatersData: LiveData<Theaters>
         get() = _InTheatersData
 
@@ -28,7 +28,6 @@ class InTheatersViewModel : BaseViewModel() {
                 _status.value = ApiStatus.LOADING
                 val response =
                     HotRepository.getInstance.getInTheaters(
-                        "0df993c66c0c636e29ecbb5344252a4a",
                         "济南"
                     )
                 _status.value = ApiStatus.DONE

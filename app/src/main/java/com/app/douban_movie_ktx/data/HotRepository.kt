@@ -1,5 +1,6 @@
 package com.app.douban_movie_ktx.data
 
+import com.app.douban_movie_ktx.BuildConfig
 import com.app.douban_movie_ktx.data.api.ApiService
 import com.app.douban_movie_ktx.data.model.Theaters
 import com.app.douban_movie_ktx.data.remote.RetrofitClient
@@ -15,14 +16,14 @@ class HotRepository {
         private val apiService: ApiService by lazy {
             RetrofitClient().getService(
                 ApiService::class.java,
-                ApiService.baseUrl
+                BuildConfig.MOVIE_BASE_URL
             )
         }
     }
 
-    // 获取正咋热映数据
-    suspend fun getInTheaters(apikey: String, city: String): Theaters {
-        return apiService.getInTheaters(apikey, city)
+    // 获取正在热映数据
+    suspend fun getInTheaters(city: String): Theaters {
+        return apiService.getInTheaters(city)
     }
 
     // 获取即将上映数据
