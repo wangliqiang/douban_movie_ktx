@@ -1,4 +1,4 @@
-package com.app.douban_movie_ktx
+package com.app.douban_movie_ktx.ui
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -11,9 +11,9 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavController
+import com.app.douban_movie_ktx.R
 import com.app.douban_movie_ktx.databinding.ActivityMainBinding
 import com.app.douban_movie_ktx.utils.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -37,7 +37,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this,
+            R.layout.activity_main
+        )
 
         if (savedInstanceState == null) {
             setupBottomNavigationBar()
